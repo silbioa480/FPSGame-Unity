@@ -18,7 +18,7 @@ public class EnemyFSM : MonoBehaviour
     public float findDistance = 8f;
     public float attackDistance = 2f;
     public float moveSpeed = 5f;
-    float currentTime = 0;
+    float currentTime = 3f;
     float attackDelay = 2f;
     public int attackPower = 3;
     public float moveDistance = 20f;
