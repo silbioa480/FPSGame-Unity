@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyFSM : MonoBehaviour
 {
@@ -22,7 +23,8 @@ public class EnemyFSM : MonoBehaviour
     public int attackPower = 3;
     public float moveDistance = 20f;
     public int maxHp = 15;
-    public int hp = 15;
+    int hp = 15;
+    public Slider hpSlider;
     Vector3 originPos;
     CharacterController cc;
     Transform player;
@@ -62,10 +64,13 @@ public class EnemyFSM : MonoBehaviour
                 //Die();
                 break;
         }
+
+        hpSlider.value = (float)hp / (float)maxHp;
     }
 
     void Idle()
     {
+        hp = maxHp;
         if(Vector3.Distance(transform.position, player.position) < findDistance)
         {
             m_State = EnemyState.Move;
@@ -119,7 +124,6 @@ public class EnemyFSM : MonoBehaviour
         else
         {
             transform.position = originPos;
-            hp = maxHp;
             m_State = EnemyState.Idle;
             print("상태 전환 : Return -> Idle");
         }

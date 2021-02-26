@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class PlayerMove : MonoBehaviour
     private float yVelocity = 0;
     public float jumpPower = 10f;
     public bool isJumping = false;
-    public int hp = 15;
+    public int hp = 20;
+    int maxHp = 20;
+    public Slider hpSlider;
+    public GameObject hitEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,10 +45,24 @@ public class PlayerMove : MonoBehaviour
         dir.y = yVelocity;
 
         cc.Move(dir * moveSpeed * Time.deltaTime);
+
+        hpSlider.value = (float)hp / (float)maxHp;
     }
 
     public void DamageAction(int damage)
     {
         hp -= damage;
+
+        if(hp > 0 )
+        {
+            StartCoroutine(PlayHitEffect());
+        }
+    }
+
+    IEnumerator PlayHitEffect()
+    {
+        hitEffect.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        hitEffect.SetActive(false);
     }
 }
