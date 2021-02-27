@@ -15,10 +15,13 @@ public class PlayerMove : MonoBehaviour
     int maxHp = 20;
     public Slider hpSlider;
     public GameObject hitEffect;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
+
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,8 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 dir = new Vector3(h, 0, v);
         dir = dir.normalized;
+
+        anim.SetFloat("MoveMotion", dir.magnitude);
 
         dir = Camera.main.transform.TransformDirection(dir);
 
