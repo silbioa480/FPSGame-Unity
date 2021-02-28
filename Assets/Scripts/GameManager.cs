@@ -69,20 +69,31 @@ public class GameManager : MonoBehaviour
 
             gState = GameState.GameOver;
         }
+        if(Input.GetButtonDown("Cancel"))
+        {
+            if(gState == GameState.Pause) CloseOptionWindow();
+            else OpenOptionWindow();
+        }
     }
 
     public void OpenOptionWindow()
     {
         gameOption.SetActive(true);
         Time.timeScale = 0f;
-        gState = GameState.Pause;
+        if(gState != GameState.Ready) 
+        {
+            gState = GameState.Pause;
+        }
     }
 
     public void CloseOptionWindow()
     {
         gameOption.SetActive(false);
         Time.timeScale = 1f;
-        gState = GameState.Run;
+        if(gState != GameState.Ready)
+        {
+            gState = GameState.Run;
+        }
     }
 
     public void RestartGame()

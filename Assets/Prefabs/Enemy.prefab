@@ -2285,7 +2285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d165497a76edcd4fb02896dc6007b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4956439434763304457, guid: 38dbb7a8b0f4c754d90b1530aac96f18, type: 3}
 --- !u!1 &2412917533107703282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,11 +2843,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0486daed267fb4a8f6e5a73dfb535f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  findDistance: 8
+  findDistance: 20
   attackDistance: 2
   moveSpeed: 5
   attackPower: 3
-  moveDistance: 20
+  moveDistance: 40
   maxHp: 15
   hpSlider: {fileID: 2412917531830792145}
 --- !u!195 &2412917533413012609

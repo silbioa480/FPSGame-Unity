@@ -52,6 +52,7 @@ public class EnemyFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.gm.gState != GameManager.GameState.Run) return;
         switch(m_State)
         {
             case EnemyState.Idle:
