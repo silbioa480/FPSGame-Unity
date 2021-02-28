@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,12 +17,14 @@ public class GameManager : MonoBehaviour
     {
         Ready,
         Run,
+        Pause,
         GameOver
     }
     public GameState gState;
     public GameObject gameLabel;
     Text gameText;
     PlayerMove player;
+    public GameObject gameOption;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +63,37 @@ public class GameManager : MonoBehaviour
             gameLabel.SetActive(true);
             gameText.text = "Game Over";
             gameText.color = new Color32(255, 0, 0, 255);
+
+            Transform buttons = gameText.transform.GetChild(0);
+            buttons.gameObject.SetActive(true);
+
             gState = GameState.GameOver;
         }
+    }
+
+    public void OpenOptionWindow()
+    {
+        gameOption.SetActive(true);
+        Time.timeScale = 0f;
+        gState = GameState.Pause;
+    }
+
+    public void CloseOptionWindow()
+    {
+        gameOption.SetActive(false);
+        Time.timeScale = 1f;
+        gState = GameState.Run;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

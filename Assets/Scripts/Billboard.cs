@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    public Transform target;
+    Transform target;
     // Start is called before the first frame update
     void Start()
     {
-        
+        target = GameObject.Find("Main Camera").transform;
     }
 
     // Update is called once per frame
