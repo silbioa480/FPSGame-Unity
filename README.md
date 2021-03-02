@@ -1,2 +1,2 @@
-# Unity-FPSGame
-C# Language Unity Simple FPS Game (ProtoType)
+# FPSGame-Unity
+C# Language Unity Simple FPS Game (AlphaType)
