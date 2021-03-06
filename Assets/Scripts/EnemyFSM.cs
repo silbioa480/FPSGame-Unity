@@ -101,11 +101,8 @@ public class EnemyFSM : MonoBehaviour
             // cc.Move(dir * moveSpeed * Time.deltaTime);
             // transform.forward = dir;
 
-            smith.isStopped = true;
-            smith.ResetPath();
-
-            smith.stoppingDistance = attackDistance;
             smith.destination = player.position;
+            smith.stoppingDistance = attackDistance;
         }
         else
         {
