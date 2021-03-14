@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gState = GameState.Ready;
+        Cursor.lockState = CursorLockMode.Locked;
         gameText = gameLabel.GetComponent<Text>();
         gameText.text = "Ready...";
         gameText.color = new Color32(255, 185, 0, 255);
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
         if(player.hp <= 0)
         {
             player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
+            Cursor.lockState = CursorLockMode.None;
             gameLabel.SetActive(true);
             gameText.text = "Game Over";
             gameText.color = new Color32(255, 0, 0, 255);
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour
     public void OpenOptionWindow()
     {
         gameOption.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         if(gState != GameState.Ready) 
         {
@@ -89,6 +92,7 @@ public class GameManager : MonoBehaviour
     public void CloseOptionWindow()
     {
         gameOption.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         if(gState != GameState.Ready)
         {
@@ -105,6 +109,10 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }

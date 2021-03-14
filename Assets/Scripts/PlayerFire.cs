@@ -29,6 +29,7 @@ public class PlayerFire : MonoBehaviour
     public GameObject crosshair02_zoom;
     bool ZoomMode = false;
     public GameObject[] eff_Flash;
+    float lastStep, timeBetweenSteps = 0.05f;
     // Start is called before the first frame update
     void Start()
     {
@@ -77,9 +78,13 @@ public class PlayerFire : MonoBehaviour
             }
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
         {
-            if(anim.GetFloat("MoveMotion") == 0) anim.SetTrigger("Attack");
+            if(Time.time - lastStep > timeBetweenSteps)
+            {
+                lastStep = Time.time;
+
+                if(anim.GetFloat("MoveMotion") == 0) anim.SetTrigger("Attack");
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
             RaycastHit hitInfo = new RaycastHit();
@@ -102,6 +107,7 @@ public class PlayerFire : MonoBehaviour
             }
 
             StartCoroutine(ShootEffectOn(0.05f));
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha1))
